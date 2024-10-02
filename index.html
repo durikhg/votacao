@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação Presidente - Estilo Windows XP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="window">
+        <div class="window-bar">Votação para Presidente do Grupinho</div>
+        <div class="propostas">
+            <h2>Propostas</h2>
+            <p><strong>David:</strong> fiquei com preguiça de colocar</p>
+            <p><strong>Akattana:</strong> Propostas do governo aKattana:
+
+                <br> <li>Igualdade entre todos (exceto com os membros Artic e Shonbra)</li>
+                <br><li>Artic e Shonbra retirados do grupo diariamente</li>
+                <br><li>Poder marcar @everyone e @here</li>
+                <br><li>Projeto resenhometro continua</li>
+                <br><li>Combo resenha todo dia</li>
+                <br><li>Ultra mega hyper super blaster resenha combo 1 vez na semana</li>
+                <br><li>Reaper 2 banido do grupo</li>
+                <br><li>Nazismo, facismo e homofobia liberados</li>
+                <br><li>Machismo liberado (apenas para quem não é o Artic ou o Shonbra)</li>
+                <br><li>Artic terá apenas 30 minutos para conversar no dia (com permissão para falar)</li>
+                <br><li>Jonkler banido do grupo</li>
+                <br><li>Homens heteros nao poderao falar "socorro", "vei" e "smt"</li>
+                <br><li>Proibido cantar musica ruim</li>
+                <br><li>Proibido chamar pra jogar no meio da resenha</li>
+                
+                <br> No meu mandato, todos os Glopnorps serão 100% afastados da resenha. </p>
+        </div>
+
+        <div class="center">
+            <h2>Vote aqui</h2>
+            <input type="text" id="nome" placeholder="Seu nome">
+            <select id="candidato">
+                <option value="david">David</option>
+                <option value="akattana">Akattana</option>
+            </select>
+            <center><button onclick="votar()">Votar</button></center>
+
+            <h2>Resultados</h2>
+        <center><button onclick="mostrarResultado()">Mostrar Resultado</button></center>
+        </div>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function votar() {
+            const nome = document.getElementById('nome').value;
+            const candidato = document.getElementById('candidato').value;
+
+            if (!nome) {
+                alert('Por favor, insira seu nome.');
+                return;
+            }
+
+            fetch('http://localhost:3000/votar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ nome, candidato }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => { throw new Error(data.message); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        }
+
+        function mostrarResultado() {
+            fetch('http://localhost:3000/resultado')
+            .then(response => response.json())
+            .then(data => {
+                const resultadoDiv = document.getElementById('resultado');
+                let resultadoHtml = `
+                    <p>David: ${data.votos.david} votos</p>
+                    <p>Akattana: ${data.votos.akattana} votos</p>
+                    <h3>Registro de Votos:</h3>
+                    <ul>
+                `;
+
+                data.registroDeVotos.forEach(voto => {
+                    resultadoHtml += `<li>${voto.nome} votou em ${voto.candidato.charAt(0).toUpperCase() + voto.candidato.slice(1)}</li>`;
+                });
+
+                resultadoHtml += '</ul>';
+                resultadoDiv.innerHTML = resultadoHtml;
+            })
+            .catch(error => {
+                console.error('Erro ao obter resultados:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+

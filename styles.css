@@ -1,0 +1,96 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+    background-color: #E4E4E4;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #000080;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFF;
+}
+
+.propostas {
+    background-color: #FFF;
+    border: 2px solid #7F9DB9;
+    padding: 15px;
+    margin: 20px auto;
+    width: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"], select {
+    width: 200px;
+    padding: 5px;
+    border: 2px solid #7F9DB9;
+    background-color: #F0F0F0;
+    font-size: 14px;
+    box-shadow: inset 2px 2px 2px #D0D0D0;
+    margin-bottom: 10px;
+    display: block;
+    margin: 10px auto;
+}
+
+button {
+    background-color: #C0C0C0;
+    border: 2px solid #7F9DB9;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    border: 2px solid #5F7D99;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#resultado {
+    margin: 20px auto;
+    width: 50%;
+    padding: 10px;
+    background-color: #FFF;
+    border: 2px solid #7F9DB9;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #D0D0D0;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* Barra de título estilo Windows XP */
+.window-bar {
+    background-color: #000080;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Container da janela estilo XP */
+.window {
+    border: 2px solid #7F9DB9;
+    width: 50%;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
